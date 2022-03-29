@@ -1,59 +1,79 @@
-//Simple game of Rock, Paper, Scissors
-const rock= ["rock"]
-const paper = ["paper"]
-const scissor = ["scissors"]
+//Simple game of rock paper scissors
 
-
-
-//Computer at Random chooses a number from 0-2
-let computerChoice=([Math.floor(Math.random() * 3)]);
-    console.log(computerChoice);    
-
-
-//Assign a choice for random number for computer
 function computerPlay(){
-    if (computerChoice==0){
-        console.log("Computer chose Rock")
-    }
-    else if (computerChoice==1){
-        console.log("Computer chose Paper")
-    }
-    else if (computerChoice==2){
-        console.log("Computer chose Scissors")
-    }
-          
-}
-computerPlay();
 
+let RND = [Math.floor(Math.random() * 3)]
+    if (RND == 0){
+        let rockChoice="rock";
+        return rockChoice;
+    }
+    else if (RND ==1){
+        let paperChoice="paper";
+        return paperChoice;
+    
+    }   
+    else if (RND ==2){
+        let scissorsChoice="scissors";
+        return scissorsChoice;    
+    }
+}
+
+
+function playRound (playerSelection, computerSelection){
+
+    playerSelection= prompt("Enter Rock, Paper, or Scissors").toLowerCase();
+    let win = [];
+    computerSelection=computerPlay();
+
+
+    if (playerSelection=="rock" && computerSelection == "scissors"){
+        ++win;
+        console.log("You chose rock and PC chose Scissors. You win");
+    }
+    if (playerSelection=="rock" && computerSelection == "rock"){
+        console.log("You chose rock and PC chose Rock. Tie");
+    }
+    if (playerSelection=="rock" && computerSelection == "paper"){
+        --win;
+        console.log(win)
+        console.log("You chose rock and PC chose paper. You lose");
+    }
+    if (playerSelection=="paper" && computerSelection == "rock"){
+        ++win;
+        console.log(win)
+        console.log("You chose paper and PC chose rock. You win");
+    }
+    if (playerSelection=="paper" && computerSelection == "paper"){
+        console.log("You chose paper and PC chose paper. Tie");
+    }
+    if (playerSelection=="paper" && computerSelection == "scissors"){
+        --win;
+        console.log(win)
+        console.log("You chose paper and PC chose scissors. You lose");
+    }
+    if (playerSelection=="scissors" && computerSelection == "paper"){
+        ++win;
+        console.log(win)
+        console.log("You chose scissors and PC chose paper. You win");
+    }
+    if (playerSelection=="scissors" && computerSelection == "scissors"){
+        
+        console.log("You chose scissors and PC chose scissors. Tie");
+    }
+    if (playerSelection=="scissors" && computerSelection == "rock"){
+        --win;
+        console.log(win)
+        console.log("You chose scissors and PC chose paper. You lose");
+    }
+}
+playRound();
+
+
+// Play up to 5 rounds
 
 function game(){
-        
-
+    for(let i=1; i<5; i++){
+        playRound(i);
+    }
 }
 game();
-
-
-
-
-
-
-function playerChoice(){
-    let playerChoose = prompt("Choose Rock, Paper, or Scissors")
-        console.log(playerChoose)
-     if (playerChoose==rock){
-        console.log("Player chose rock")
-     }
-     else if (playerChoose == paper){
-         console.log("player chose paper")
-     }
-     else if (playerChoose == scissor){
-         console.log("player chose scissors")
-     }
-     while (playerChoose!==rock || paper || scissor){
-        console.log("Please try again") 
-        if (playerChoose == rock || paper || scissor)
-        break;
-    }
-
-}
-playerChoice();
